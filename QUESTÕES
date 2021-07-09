@@ -1,0 +1,538 @@
+# listaponteiros1
+1) O aprendizado dos ponteiros pode ser muito importante para resolver vários problemas da computação,Essencialmente serve para criar indireção,em 
+vez de acessar um valor diretamentevocê passa ter um endereço onde tem esse valor. Além disso esta presente em diversos tipos de sistemas operacionais,
+o que nos dar conecimento para domina-los
+
+//questao 2
+int i=5, *p;
+    &i==4094;
+  p = &i;
+  printf("%x %d %d %d %d", p,p+2,&p,3p,*&p+4)
+  61fe1c
+  5
+  15
+  9
+  //questao3
+  000000000000000/0000000000000001/00000000FFFFFFFE/0000000000000003
+  
+  //questao 4
+  a-problema
+  b-nao teve problema
+  c-nao teve problema
+  d-problema
+  e-nao teve problema
+  f-nao teve problema
+  g-problema
+  h-nao teve problema
+  
+  questao 5
+ a- 20
+b- 29.0
+c- P
+d- e
+e- P
+f- e
+g- t
+h- 31
+i- 45
+j- 27
+k- 31
+l-45
+m-45
+
+questao 6
+contador/valor/valor/endereco/endereco
+i = 0vet[0] = 1.1*(f + 0) = 1.1&vet[0] = 61FDF0(f + 0) = 61FDF0
+i = 1vet[1] = 2.2*(f + 1) = 2.2&vet[1] = 61FDF4(f + 1) = 61FDF4
+i = 2vet[2] = 3.3*(f + 2) = 3.3&vet[2] = 61FDF8(f + 2) = 61FDF8
+i = 3vet[3] = 4.4*(f + 3) = 4.4&vet[3] = 61FDFC(f + 3) = 61FDFC
+i = 4vet[4] = 5.5*(f + 4) = 5.5&vet[4] = 61FE00(f + 4) = 61FE00
+
+questao 7
+*(pulo + 2);
+
+questao 8
+a primeira e a ultima estão corretas,porque nao pode incrementar valor do tipo int ao ponteiro.
+
+questao 9
+4 9 13(primeira)
+61FE10 61FE14 61FE18(segunda)
+
+questao 10
+char:x+1=4093;x+2=4094;x+3=4095;
+int:x+1=4094;x+2=4096;x+3=4098;
+float:x+1=4096;x+2=409A;x+3=409E;//eu esperava que fosse seguir a mesma logica dos dois primeiros
+double:x+1=409A;x+2=40A2;x+3=40AA;
+
+questao 11
+a-valido
+b-valido
+c-invalido
+d-valido
+e-valido
+f-invalido
+g-invalido
+h-valido
+
+questao 12
+int main(void){
+  void testevariavel(int x);
+  void testeponteiro(int *pX);
+  int teste=1;
+  int *pTeste=&teste;
+  testeponteiro(pTeste);
+  printf("%i",teste);
+  getchar();
+  return 0;}
+  void testevariavel(int x){
+  ++x;}
+  void testeponteiro(int*pX){
+  ++*pX;}
+  
+  #include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+13)int main(){
+    float *v;
+    int i, aux, j;
+    int x;
+    setlocale(LC_ALL, "");
+    printf("Informe quantos numeros serão digitados para colocar na ordem cresente: ");
+    scanf("%d",&x);
+    v = (void*)malloc(x * sizeof(int));
+    for (i = 0; i < x; ++i) {
+         v[i] = i;
+    }
+    printf("\nInforme os numeros do que ficarão em ordem crescente : \n");
+    printf("\n");
+    for(i = 0; i < x; i++){
+            printf("x%d = ", i);
+            scanf("%f", &v[i]);
+    }
+    for(i = 0; i < x; i++){
+        for(j = i+1; j < x; j++){
+            if (v[i] > v[j]){
+                aux = v[i];
+                v[i] = v[j];
+                v[j] = aux;
+                }
+        }
+    }
+    printf("\nEsses são os numeros em ordem crescente : \n");
+    printf("\n");
+    for(i = 0; i < x; i++){
+        printf("%f  ",v[i]);
+    }
+    free(v);
+}
+
+14)#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int comparação(const void *a, const void *b) {
+   return ( *(int*)a - *(int*)b );
+}
+int main(){
+    float *v;
+    int i, aux, j;
+    int x;
+
+    setlocale(LC_ALL, "");
+    printf("Informe quantos numeros serão digitados para colocar na ordem cresente: ");
+    scanf("%d",&x);
+    v = (void*)malloc(x * sizeof(int));
+    for (i = 0; i < x; ++i) {
+         v[i] = i;
+    }
+    printf("\nInforme os numeros do que ficarão em ordem crescente : \n");
+    printf("\n");
+    for(i = 0; i < x; i++){
+            printf("x%d = ", i);
+            scanf("%f", &v[i]);
+    }
+    qsort(v, x, sizeof(float), comparação);//V é um ponteiro para o primeiro elemento do array, x é o número de elementos que array possui, comparação foi a função criada para que tenha a comparação de dois elementos do array.
+
+    printf("\nEsses são os numeros em ordem crescente : \n");
+    printf("\n");
+    for(i = 0; i < x; i++){
+        printf("%f  ",v[i]);
+    }
+    free(v);
+}
+
+15)#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+int comparador(const void *a, const void *b) {
+   return ( *(int*)a - *(int*)b );
+}
+ 
+int main () {
+   int i, val[] = { 15, 30, 10, 20, 25 };
+ 
+   //ordena o array
+   qsort(val, 5, sizeof(int), comparador);
+ 
+   //mostra os valores do array
+   for( i = 0 ; i < 5; i++ ) {
+      printf("%i ", val[i]);
+   }
+ 
+   return(0);
+}
+
+16)
+ 16-15)
+ #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int compare (const void * a, const void * b)
+{
+    if(*(float *)a > *(float *)b){
+        return 1;
+    }
+
+    else if (*(float *)a < *(float *)b){
+        return -1;
+    }
+
+    else{
+        return 0;
+    }
+    //return( *(float*)a - *(float*)b);
+}
+
+int main(void){
+    int i,n; //vairÃ¡veis da alocaÃ§Ã£o de vetores
+    float *x;
+    clock_t Ticks[2];
+    Ticks[0] = clock();
+    printf("Digite aqui o valor que desejas para n:"); // InteraÃ§Ã£o com usuÃ¡rio para descobrir o tamano do vetor desejado
+    scanf("%d", &n);
+    x = malloc(n * sizeof(float)); //alocando vetor
+    for (i = 0; i < n; i++) { //Processo de inserÃ§Ã£o dos valores que desejam ser alocados
+        printf("Digite o valor de numero %d\n",i+1);
+        scanf("%f", &x[i]);
+    }
+    for (i = 0; i < n; i++) {  // ImpressÃ£o na tela do vetor em seu estado original
+        printf("[%.1f] ",x[i]);
+    }
+    printf("\n");// apenas para estÃ©tica de apresentaÃ§Ã£o
+
+    qsort ( x, n, sizeof(float), compare);
+    for (i=0; i<n; i++){
+        printf ("[%.1f] ", x[i]);
+    }
+    free(x);
+    Ticks[1] = clock();
+    double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+    printf("\nTempo gasto: %g ms.", Tempo);
+    getchar();
+    return 0;
+}
+
+16)
+16-15)
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
+
+
+void cria_triangulacao (float *vetor, int i, int f){
+    int auxiliar = vetor[i]; // definindo vetor auxiliar como a primeira posiÃ§Ã£o do vetor (posiÃ§Ã£o inicial)
+    int j = i * 2 + 1; // primeiro ramo
+    while(j <= f){ // enquanto o valor final for maior ou iagual ao primeiro ramo
+        if(j<f){   // quando o primeiro ramo form menor que o valor final
+            if(vetor[j] < vetor[j+1]){ // o primeiro ramo tem mais dois ramos ? qual o meior ?
+                j = j+1;
+            }
+        }
+        if(auxiliar < vetor[j]){ // ramo secundÃ¡rio maior que o ramo prioncipal ?
+            vetor[i] = vetor[j]; // entÃ£o o ramo secundÃ¡rio se torna o ramo principal
+            i = j;               //    (...)
+            j= 2*i+1;            // Repetir o processo
+        }else{
+            j= f +1;
+        }
+    }
+    vetor[i] = auxiliar; // antigo ramo principal ocupa o lugar do Ãºltimo ramo analizado
+
+}
+
+void triangular (float *vetor, int n){
+    int i, auxiliar;
+    for(i= (n-1)/2; i>=0; i--){
+        cria_triangulacao(vetor, i, n-1);
+    }
+    for(i = n-1; i>=1; i--){
+        auxiliar = vetor[0]; //  Pegar o maior elemento
+        vetor[0]= vetor[i] ; //  e colar na sua devida posiÃ§Ã£o
+        vetor[i] = auxiliar; //  no vetor
+
+        cria_triangulacao(vetor, 0, i-1); // Refazendo a triangulaÃ§Ã£o
+    }
+}
+
+int main() {
+
+    int i,n; //vairÃ¡veis da alocaÃ§Ã£o de vetores
+    float *x, (*ordena_ai)();
+    ordena_ai = triangular;
+
+    clock_t Ticks[2];
+    Ticks[0] = clock();
+
+    printf("Digite aqui o valor que desejas para n:"); // InteraÃ§Ã£o com usuÃ¡rio para descobrir o tamano do vetor desejado
+    scanf("%d", &n);
+
+    x = malloc(n * sizeof(float)); //alocando vetor
+
+    for (i = 0; i < n; i++) { //Processo de inserÃ§Ã£o dos valores que desejam ser alocados
+        printf("Digite o valor de numero %d\n",i+1);
+        scanf("%f", &x[i]);
+    }
+
+    for (i = 0; i < n; i++) {  // ImpressÃ£o na tela do vetor em seu estado original
+        printf("[%.1f] ",x[i]);
+    }
+
+    printf("\n");// apenas para estÃ©tica de apresentaÃ§Ã£o
+
+    ordena_ai(x,n);
+    for (i=0; i<n; i++){
+        printf ("[%.1f] ", x[i]);
+    }
+    free(x);
+
+    Ticks[1] = clock();
+    double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+    printf("\nTempo gasto: %g ms.", Tempo);
+    getchar();
+
+    return 0;
+}
+
+17)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int x;
+    int *vA, *vB, *vC;
+    int i;
+
+    printf("Determine o tamanho dos vetores: ");
+    scanf("%d", &x);
+    vA = (void*)malloc(x * sizeof(int));
+    vB = (void*)malloc(x * sizeof(int));
+    vC = (void*)malloc(x * sizeof(int));
+    for (i = 0; i < x; ++i) {
+         vA[i] = i;
+    }
+    for (i = 0; i < x; ++i) {
+         vB[i] = i;
+    }
+    for (i = 0; i < x; ++i) {
+         vC[i] = i;
+    }
+    printf("\nInforme o valor do inteiro detro do primeiro vetor na posição \n");
+        for(i = 0; i < x; i++){
+            printf("x%d = ", i);
+            scanf("%d", &vA[i]);
+    }
+    printf("\nInforme o valor do inteiro detro do segundo vetor na posição \n");
+        for(i = 0; i < x; i++){
+            printf("x%d = ", i);
+            scanf("%d", &vB[i]);
+    }
+    for (i = 0; i < x; ++i){
+         vC[i] = (vA[i] + vB[i]);
+    }
+    printf("a Soma dos vetores A e B é igual ao vetor C : ");
+    for (i = 0; i < x; ++i){
+          printf("%d  ", vC[i]);
+    }
+
+    printf("\n");
+    free(vA);
+    free(vB);
+    free(vC);
+    return 0;
+}
+
+18)
+ #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+ 
+
+void multMat(float **matA, float **matB, float **matC, int nla, int ncalb, int ncb){
+
+int soma = 0;
+
+for (int i = 0; i < nla; i++){
+    for (int j = 0; j < ncb; j++){
+        for (int k = 0; k < ncalb; k++){
+            soma = soma + matA[i][k] * matB [k][j];    
+        }
+        matC[i][j] = soma;
+        soma = 0;
+    }
+}
+
+};
+
+int main()
+{
+
+int nla, ncalb, ncb, i, j, min = -10, max = 20; 
+float **matA, **matB, **matC; 
+
+
+printf("Digite a quantidade de linhas da matriz A: ");
+scanf("%d", &nla);
+
+printf ("Digite a quantidade de colunas da matriz A e linhas da matriz B: ");
+scanf("%d", &ncalb);
+
+printf ("Digite a quantidade de colunas da matriz B: ");
+scanf ("%d", &ncb);
+
+matA = (float**)malloc(nla * sizeof(float*));
+matA[0] = (float*)malloc(nla * ncalb * sizeof(float));
+for(i = 1; i < nla; i++){
+   matA[i] = matA[i - 1] + ncalb;
+}
+
+srand(time(NULL));
+for (i = 0; i < nla; i++){
+    for ( j = 0; j < ncalb; j++){
+        matA[i][j] = rand() % max + min;
+    }
+}
+
+matB = (float**)malloc(ncalb * sizeof(float*));
+matB[0] = (float*)malloc(ncalb * ncb * sizeof(float));
+for(i = 1; i < ncalb; i++){
+   matB[i] = matB[i - 1] + ncb;
+}
+
+for (i = 0; i < ncalb; i++){
+    for (j = 0; j < ncb; j++){
+        matB[i][j] = rand() % max + min;
+    }
+}
+
+matC = (float**)malloc(nla * sizeof(float*));
+matC[0] = (float*)malloc(nla * ncb * sizeof(float));
+for(int i=1; i < nla; i++){
+   matC[i] = matC[i - 1] + ncb;
+}
+
+multMat (matA, matB, matC, nla, ncalb, ncb);
+
+printf ("A matriz A e': \n");
+
+for (i = 0; i < nla; i++){
+    for (j = 0; j < ncalb; j++){
+        printf("%f ", matA[i][j]); 
+}
+printf("\n");
+}
+
+printf ("\n");
+printf ("A matriz B e': \n");
+
+for (i = 0; i < ncalb; i++){
+    for (j = 0; j < ncb; j++){
+        printf("%f ", matB[i][j]); 
+}
+printf("\n");
+}
+
+printf ("\n");
+printf ("A matriz C e': \n");
+
+for (i = 0; i < nla; i++){
+    for (j = 0; j < ncb; j++){
+        printf("%f ", matC[i][j]); 
+}
+printf("\n");
+}
+
+
+free(matA[0]);
+free(matA);
+
+free(matB[0]);
+free(matB);
+
+free (matC[0]);
+free (matC);
+    return(0);
+}
+
+19)
+#include "gc.h"
+#include <assert.h>
+#include <stdio.h>
+
+int main(void)
+{
+    int i;
+    const int size = 10000000;
+
+    GC_INIT();
+    for (i = 0; i < size; ++i)
+    {
+        int **p = GC_MALLOC(sizeof *p);
+        int *q = GC_MALLOC_ATOMIC(sizeof *q);
+
+        assert(*p == 0);
+        *p = GC_REALLOC(q, 2 * sizeof *p);
+        if (i == size-1){
+            printf("Heap size = %zu\n", GC_get_heap_size());
+        }
+    }
+    return 0;
+}
+
+20)
+#include <stdlib.h>
+#include <assert.h>
+#include <gc/gc.h>
+#include <time.h>
+
+int main(void)
+{
+
+    int i;
+    const int size = 10000000;
+    clock_t t_i, t_f;
+
+    t_i = clock();
+    GC_INIT();
+    for (i = 0; i < size; ++i){
+        int **p = GC_MALLOC(sizeof(int));
+    }
+    t_i = clock() - t_i;
+    printf("%f segundos", ((float)t_i)/CLOCKS_PER_SEC);
+
+    t_f = clock();
+    for (i = 0; i < size; ++i){
+        int **q = malloc(sizeof(int));
+    free(q);
+    }
+
+    t_f = clock() - t_f;
+    printf("%f segundos", ((float)t_f)/CLOCKS_PER_SEC);
+
+    return 0;
+}
+
+
